@@ -65,17 +65,12 @@
 **Только в текущий проект** — из терминала, с флагом `--scope`:
 
 ```bash
-# в .claude/settings.json — попадёт в git, увидит вся команда
+# в .claude/settings.json проекта — попадёт в git
 claude plugin install vibecoding-course@vibecoding-course --scope project
 
-# в .claude/settings.local.json — только у вас, в git не попадёт
+# в .claude/settings.local.json — в git не попадёт
 claude plugin install vibecoding-course@vibecoding-course --scope local
 ```
-
-Тот же флаг работает и для маркетплейса:
-`claude plugin marketplace add a-v-ershov/vibecoding_course_skills --scope project` —
-тогда маркетплейс пропишется в настройки проекта, и Claude Code предложит его коллегам
-при первом запуске.
 
 После установки перезапустите Claude Code. Скиллы появятся с префиксом `vibecoding-course:`.
 
