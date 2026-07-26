@@ -1,11 +1,11 @@
 {
   "name": "vibecoding-course",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/a-v-ershov/vibecoding_course_skills",
   "description": "Скиллы курса по вайбкодингу",
   "author": {
     "name": "a-v-ershov",
     "email": "a@ershov.io"
   },
-  "keywords": ["skills", "spec", "specification", "init", "design", "ui-kit", "dev-plan", "tasks", "development", "verification", "commit", "vibecoding"]
+  "keywords": ["skills", "spec", "specification", "init", "design", "ui-kit", "dev-plan", "tasks", "development", "verification", "refactor", "testing", "manual-test", "security", "deploy", "analytics", "commit", "vibecoding"]
 }
