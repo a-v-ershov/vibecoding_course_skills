@@ -213,4 +213,5 @@ agents/
   idea-skeptic.md    # скептик списка ИИ-идей (для ai-ideas)
   implementer.md     # исполнитель одной задачи разработки
   task-verifier.md   # независимый тестировщик одной задачи
+dist/claude-chat/    # standalone-версия ai-ideas для чата claude.ai (ai-ideas.zip + INSTALL.md); локальная сборка, в git не попадает
 ```
