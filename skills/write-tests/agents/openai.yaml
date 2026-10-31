@@ -1,0 +1,3 @@
+interface:
+  display_name: "Написать тест"
+  short_description: "Тест по пробелу или сценарию, red-first"

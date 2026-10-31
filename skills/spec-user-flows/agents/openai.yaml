@@ -1,0 +1,3 @@
+interface:
+  display_name: "User flows"
+  short_description: "Экраны, состояния и тексты ошибок"

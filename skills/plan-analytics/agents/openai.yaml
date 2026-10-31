@@ -1,0 +1,3 @@
+interface:
+  display_name: "План аналитики"
+  short_description: "Что измерять и какими событиями — docs/analytics.md"

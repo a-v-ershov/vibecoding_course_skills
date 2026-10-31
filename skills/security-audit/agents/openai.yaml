@@ -1,0 +1,3 @@
+interface:
+  display_name: "Аудит безопасности"
+  short_description: "Секреты, доступ к данным, деньги, конфиг"

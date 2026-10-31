@@ -1,0 +1,3 @@
+interface:
+  display_name: "Аудит зависимостей"
+  short_description: "Уязвимые, заброшенные и лишние пакеты"

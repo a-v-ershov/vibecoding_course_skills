@@ -1,0 +1,3 @@
+interface:
+  display_name: "Прогон плана задач"
+  short_description: "Выполнить задачи плана по одной через run-task"

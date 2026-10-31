@@ -1,0 +1,3 @@
+interface:
+  display_name: "Инициализация проекта"
+  short_description: "Спека → каркас, окружение, git, AGENTS.md"

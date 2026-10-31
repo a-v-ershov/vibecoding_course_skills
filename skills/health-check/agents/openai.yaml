@@ -1,0 +1,3 @@
+interface:
+  display_name: "Проверка живости"
+  short_description: "Что из работавшего сломалось — задачами на починку"

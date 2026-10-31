@@ -1,0 +1,3 @@
+interface:
+  display_name: "Архитектура выкладки"
+  short_description: "Площадка, база, провайдер LLM и цена в месяц"

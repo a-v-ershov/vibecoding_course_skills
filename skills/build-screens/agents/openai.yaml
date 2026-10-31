@@ -1,0 +1,3 @@
+interface:
+  display_name: "Сборка экранов"
+  short_description: "Экраны по user flows на заглушках с UI-тестом"

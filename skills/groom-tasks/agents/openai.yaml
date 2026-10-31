@@ -1,0 +1,3 @@
+interface:
+  display_name: "Укрупнение доски"
+  short_description: "Слить мелкие задачи, не потеряв критериев"

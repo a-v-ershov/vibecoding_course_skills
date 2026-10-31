@@ -1,0 +1,3 @@
+interface:
+  display_name: "Отчёт по продукту"
+  short_description: "Цифры продукта за период со сравнением"

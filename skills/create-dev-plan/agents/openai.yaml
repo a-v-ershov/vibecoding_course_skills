@@ -1,0 +1,3 @@
+interface:
+  display_name: "План разработки"
+  short_description: "Очередь задач из спеки в docs/tasks/"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Интервью"
+  short_description: "Вопросы по одному с рекомендованным ответом"

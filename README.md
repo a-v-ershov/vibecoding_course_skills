@@ -1,6 +1,7 @@
 # Vibecoding Course Skills
 
-Набор скиллов курса по вайб-кодингу, упакованный как плагин Claude Code.
+Набор скиллов курса по вайб-кодингу, упакованный как плагин для Claude Code и OpenAI Codex
+(одни и те же скиллы, отдельной версии под каждый инструмент нет).
 Проводит проект по цепочке: **поиск идей → спецификация → инициализация → дизайн →
 экраны → разработка по задачам → гигиена разработки → качество → выкладка →
 аналитика**, плюс аккуратные коммиты.
@@ -35,7 +36,7 @@
 
 | Скилл | Что делает |
 |-------|------------|
-| `init-project` | Превращает спеку в живое рабочее место: проверка инструментов, git, каркас приложения, локальное окружение, `CLAUDE.md`, первый коммит. Безопасность — с первого дня |
+| `init-project` | Превращает спеку в живое рабочее место: проверка инструментов, git, каркас приложения, локальное окружение, правила проекта в `AGENTS.md` (+ `CLAUDE.md` со ссылкой на него), первый коммит. Безопасность — с первого дня |
 
 ### Дизайн и экраны
 
@@ -98,7 +99,7 @@
 |-------|------------|
 | `commit` | Аккуратные коммиты: только изменения сессии, несвязанные правки — раздельно, проверка на секреты и мусор до `git add`, план коммитов на подтверждение |
 
-## Установка
+## Установка в Claude Code
 
 Плагин ставится с GitHub через маркетплейс: маркетплейс подключается один раз,
 затем из него ставится плагин.
@@ -136,6 +137,35 @@ claude plugin install vibecoding-course@vibecoding-course --scope local
 - `/plugin` — интерактивное меню: включить/выключить плагин, посмотреть состав.
 - `claude plugin disable vibecoding-course` / `claude plugin enable vibecoding-course` — выключить и включить, не удаляя.
 - `claude plugin uninstall vibecoding-course` — удалить.
+
+## Установка в Codex
+
+Репозиторий — сам себе маркетплейс и для Codex (`.agents/plugins/marketplace.json`,
+манифест плагина — `.codex-plugin/plugin.json`). Из терминала:
+
+```bash
+codex plugin marketplace add a-v-ershov/vibecoding_course_skills
+codex plugin add vibecoding-course@vibecoding-course
+```
+
+Перезапустите Codex. Скиллы появятся с префиксом `vibecoding-course:` и вызываются через `$`:
+`$vibecoding-course:create-spec`, `$vibecoding-course:run-task T07` — или выбираются из списка
+по `$` и в `/skills`. В текстах скиллов команды записаны как `/run-task` — в Codex это
+`$vibecoding-course:run-task`.
+
+Агенты плагина (`implementer`, `task-verifier`, `spec-critic`, `idea-skeptic`) отдельно
+ставить не нужно: плагины Codex не поставляют агентов, поэтому скилл запускает обычного
+субагента Codex и передаёт ему инструкции из `agents/<имя>.md` плагина. Как именно каждый
+шаг выглядит в Claude Code и в Codex — `skills/_shared/platforms.md`.
+
+Обновить: `codex plugin marketplace upgrade vibecoding-course`.
+
+### Один проект — оба инструмента
+
+`init-project` пишет правила проекта в `AGENTS.md` (его читает Codex), а в `CLAUDE.md` кладёт
+одну строку `@AGENTS.md` — Claude Code подтягивает тот же файл. Поэтому проект, начатый
+в одном инструменте, можно продолжать в другом. Мини-скиллы проекта (проверки, сброс
+окружения) ищутся и в `.claude/skills/`, и в `.agents/skills/`.
 
 ## Использование
 
@@ -175,7 +205,7 @@ claude plugin install vibecoding-course@vibecoding-course --scope local
 постоянно бесплатное, потом дешёвое, и только потом платное — платный вариант не
 предлагается первым, если требования закрывает бесплатный. Про бюджет спрашивают
 **один раз**, в `spec-architecture`; ответ живёт в разделе «Бюджет и ограничения по
-инструментам» слоя 2 спеки и в `CLAUDE.md` проекта, и дальше его читают все скиллы,
+инструментам» слоя 2 спеки и в `AGENTS.md` проекта, и дальше его читают все скиллы,
 которые что-то выбирают. Там же фиксируется собственное решение человека — конкретный
 инструмент под компонент, «только бесплатное», «только то, что уже стоит»: к
 зафиксированному альтернативы не предлагаются. Правило целиком —
@@ -186,8 +216,8 @@ claude plugin install vibecoding-course@vibecoding-course --scope local
 
 ## Обновление
 
-Установленный плагин подхватывает изменения после повышения `version`
-в `.claude-plugin/plugin.json` и `.claude-plugin/marketplace.json`:
+Установленный плагин подхватывает изменения после повышения `version` в манифесте плагина —
+`.claude-plugin/plugin.json` и `.codex-plugin/plugin.json` (поднимаются вместе). В Claude Code:
 
 ```
 /plugin marketplace update vibecoding-course
@@ -197,21 +227,30 @@ claude plugin install vibecoding-course@vibecoding-course --scope local
 И перезапустите Claude Code. Либо включите автообновление: `/plugin` →
 **Marketplaces** → `vibecoding-course` → **Enable auto-update**.
 
+В Codex — `codex plugin marketplace upgrade vibecoding-course`.
+
 Пока плагин активно дорабатывается, поле `version` можно убрать из обоих
-манифестов — тогда новой версией считается каждый git-коммит, и bump не нужен.
+манифестов плагина — тогда новой версией считается каждый git-коммит, и bump не нужен.
 
 ## Структура репозитория
 
 ```
 .claude-plugin/
-  plugin.json        # манифест плагина
-  marketplace.json   # манифест маркетплейса (репозиторий сам себе маркетплейс)
-skills/              # 31 скилл, по папке на скилл (SKILL.md + references/)
-  _shared/           # общие справочники (формат задач, бюджет и ограничения, формат отчёта), не скиллы
+  plugin.json        # манифест плагина для Claude Code
+  marketplace.json   # манифест маркетплейса Claude Code (репозиторий сам себе маркетплейс)
+.codex-plugin/
+  plugin.json        # манифест плагина для Codex (версия — та же, что у Claude Code)
+.agents/plugins/
+  marketplace.json   # манифест маркетплейса Codex
+skills/              # 31 скилл, по папке на скилл: SKILL.md (шаги и правила) + references/
+                     # (шаблоны, таблицы, каталоги) + agents/openai.yaml (имя и описание для Codex)
+  _shared/           # общие справочники (формат задач, бюджет и ограничения, формат отчёта,
+                     # Claude Code и Codex — platforms.md), не скиллы
 agents/
   spec-critic.md     # критик полноты спеки и плана задач
   idea-skeptic.md    # скептик списка ИИ-идей (для ai-ideas)
   implementer.md     # исполнитель одной задачи разработки
   task-verifier.md   # независимый тестировщик одной задачи
+AGENTS.md            # правила работы с репозиторием для ИИ-агентов; CLAUDE.md — ссылка @AGENTS.md
 dist/claude-chat/    # standalone-версия ai-ideas для чата claude.ai (ai-ideas.zip + INSTALL.md); локальная сборка, в git не попадает
 ```

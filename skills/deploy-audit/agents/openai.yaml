@@ -1,0 +1,3 @@
+interface:
+  display_name: "Готовность к деплою"
+  short_description: "Чек-лист прода, выкладка и смок-тест"

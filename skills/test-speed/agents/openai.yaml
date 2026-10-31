@@ -1,0 +1,3 @@
+interface:
+  display_name: "Скорость тестов"
+  short_description: "Быстрый прогон без ослабления проверок"

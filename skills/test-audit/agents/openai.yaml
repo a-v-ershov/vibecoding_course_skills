@@ -1,0 +1,3 @@
+interface:
+  display_name: "Аудит тестов"
+  short_description: "Где продукт не защищён тестом"
