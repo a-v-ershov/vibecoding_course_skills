@@ -138,7 +138,7 @@
   утёкший ключ — перевыпустить, а не стереть.
 ```
 
-## 3. Мини-скилл — .claude/skills/<имя>/SKILL.md (Claude Code) или .agents/skills/<имя>/SKILL.md (Codex)
+## 3. Мини-скилл — .agents/skills/<имя>/SKILL.md (+ симлинк .claude/skills/<имя>)
 
 ```markdown
 ---
