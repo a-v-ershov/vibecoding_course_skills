@@ -40,6 +40,18 @@
 - **Ограничения агента дублируются словами в его теле.** Поле `tools:` во frontmatter
   применяет только Claude Code; в Codex агент работает по тексту файла.
 
+## Проверка перед коммитом
+
+- **Claude Code:** `claude plugin validate .` — должно быть «Validation passed». Предупреждения
+  про иконку, `LICENSE` и `CLAUDE.md` в корне известны и не мешают.
+- **Codex:** отдельной команды проверки плагина нет. Скиллы проверяет валидатор встроенного
+  скилла `skill-creator`: `python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py
+  skills/<скилл>` (нужен PyYAML). Ожидаемо ругается только на `argument-hint` — поле оставлено
+  сознательно: его показывает меню `/` в Claude Code, а Codex скиллы с ним загружает. Любое
+  другое замечание (угловые скобки `<` `>` в `description`, длина, имя) — исправлять.
+- **Загрузка в Codex:** `codex plugin add vibecoding-course@vibecoding-course` с локальным
+  маркетплейсом и `codex debug prompt-input` — в списке должны быть все скиллы плагина.
+
 ## Версии и манифесты
 
 - **Поднимается только версия плагина** — `version` в `.claude-plugin/plugin.json`

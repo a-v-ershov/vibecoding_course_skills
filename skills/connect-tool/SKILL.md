@@ -127,7 +127,7 @@ Claude Code и Codex — два ИИ-агента, и спеку с задача
 | | Поставить | Обновить |
 |---|---|---|
 | **Claude Code** | `/plugin marketplace add a-v-ershov/vibecoding_course_skills`, затем `/plugin install vibecoding-course@vibecoding-course` | `/plugin marketplace update vibecoding-course`, затем `/plugin update vibecoding-course@vibecoding-course` |
-| **Codex** | `codex plugin marketplace add a-v-ershov/vibecoding_course_skills`, затем `codex plugin add vibecoding-course@vibecoding-course` | `codex plugin marketplace upgrade vibecoding-course` |
+| **Codex** | `codex plugin marketplace add a-v-ershov/vibecoding_course_skills`, затем `codex plugin add vibecoding-course@vibecoding-course` | `codex plugin marketplace upgrade vibecoding-course`, затем `codex plugin add vibecoding-course@vibecoding-course` (без второй команды остаётся старая версия) |
 
 После установки — перезапустить инструмент. Скиллы в Codex вызываются как
 `$vibecoding-course:<скилл>`, в Claude Code — `/vibecoding-course:<скилл>`.
