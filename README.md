@@ -180,7 +180,7 @@ codex plugin add vibecoding-course@vibecoding-course
 ломаются. Агенты плагина (исполнитель, тестировщик, критики) запускаются как обычные
 субагенты, которые читают свой файл в `agents/`.
 
-### DeepSeek Harness (dsh) — проверено с моделью
+### DeepSeek Harness
 
 ```bash
 npm i -g @deepseek-ai/dsh
@@ -200,7 +200,7 @@ git clone https://github.com/a-v-ershov/vibecoding_course_skills ~/.dsh/vibecodi
 мини-скиллы и запуск агентов проверены, вплоть до коммита. В режиме без человека
 (`dsh --profile headless`) коммиту нужен доступ к `.git`: `--add-dir <проект>/.git`.
 
-### OpenCode — проверено без модели
+### OpenCode
 
 ```bash
 git clone https://github.com/a-v-ershov/vibecoding_course_skills ~/.config/opencode/vibecoding-course
@@ -216,7 +216,7 @@ git clone https://github.com/a-v-ershov/vibecoding_course_skills ~/.config/openc
 находит все скиллы, мини-скиллы проекта и сообщает модели папку скилла; прогон с моделью
 не делался.
 
-### Cursor — по документации, не проверено
+### Cursor
 
 ```bash
 git clone https://github.com/a-v-ershov/vibecoding_course_skills ~/.cursor/skills/vibecoding-course
