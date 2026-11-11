@@ -1,7 +1,8 @@
 # Vibecoding Course Skills
 
 Набор скиллов курса по вайб-кодингу, упакованный как плагин для Claude Code и OpenAI Codex
-(одни и те же скиллы, отдельной версии под каждый инструмент нет).
+(одни и те же скиллы, отдельной версии под каждый инструмент нет). Работает и в DeepSeek
+Harness, OpenCode и Cursor — см. «Другие агенты».
 Проводит проект по цепочке: **поиск идей → спецификация → инициализация → дизайн →
 экраны → разработка по задачам → гигиена разработки → качество → выкладка →
 аналитика**, плюс аккуратные коммиты.
@@ -168,6 +169,64 @@ codex plugin add vibecoding-course@vibecoding-course
 
 - `codex plugin list` — что установлено и какой версии.
 - `codex plugin remove vibecoding-course@vibecoding-course` — удалить.
+
+## Другие агенты: DeepSeek Harness, OpenCode, Cursor
+
+Основные инструменты курса — Claude Code и Codex: там плагин ставится штатно и проверен
+целиком. Скиллы работают и в агентах, которые читают папки со скиллами (формат Agent Skills),
+но ставятся иначе: репозиторий клонируется целиком, и агенту указывается папка `skills/`
+внутри клона. Целиком — потому что скиллы ссылаются на соседние `skills/_shared/` и `agents/`;
+поштучные установщики (вроде `npx skills add`) копируют только папку скилла, и ссылки
+ломаются. Агенты плагина (исполнитель, тестировщик, критики) запускаются как обычные
+субагенты, которые читают свой файл в `agents/`.
+
+### DeepSeek Harness (dsh) — проверено с моделью
+
+```bash
+npm i -g @deepseek-ai/dsh
+git clone https://github.com/a-v-ershov/vibecoding_course_skills ~/.dsh/vibecoding-course
+```
+
+В `~/.dsh/cordis.patch.yml` (полный путь вместо `<вы>`):
+
+```yaml
+- id: skill-filesystem
+  config:
+    customSkillDirs:
+      - /Users/<вы>/.dsh/vibecoding-course/skills
+```
+
+Обновление — `git -C ~/.dsh/vibecoding-course pull`. Скиллы, правила проекта (`AGENTS.md`),
+мини-скиллы и запуск агентов проверены, вплоть до коммита. В режиме без человека
+(`dsh --profile headless`) коммиту нужен доступ к `.git`: `--add-dir <проект>/.git`.
+
+### OpenCode — проверено без модели
+
+```bash
+git clone https://github.com/a-v-ershov/vibecoding_course_skills ~/.config/opencode/vibecoding-course
+```
+
+В `~/.config/opencode/opencode.json` (полный путь вместо `<вы>`):
+
+```json
+{ "skills": ["/Users/<вы>/.config/opencode/vibecoding-course/skills"] }
+```
+
+Обновление — `git -C ~/.config/opencode/vibecoding-course pull`. Проверено, что OpenCode
+находит все скиллы, мини-скиллы проекта и сообщает модели папку скилла; прогон с моделью
+не делался.
+
+### Cursor — по документации, не проверено
+
+```bash
+git clone https://github.com/a-v-ershov/vibecoding_course_skills ~/.cursor/skills/vibecoding-course
+```
+
+Перезапустите Cursor — скиллы появятся в чате агента по `/` (`/run-task`, `/create-spec`…):
+Cursor ищет `SKILL.md` в `~/.cursor/skills/` рекурсивно. Обновление —
+`git -C ~/.cursor/skills/vibecoding-course pull`. Быстрая проверка: в любом проекте наберите
+`/run-task` и попросите, не выполняя, назвать абсолютный путь к `task-format.md` и его первую
+строку — должен быть путь внутри клона и «# Формат задачи разработки (общий файл)».
 
 ## Claude Code и Codex в одном проекте
 
